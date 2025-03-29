@@ -1,3 +1,4 @@
+using BusinessLogicLayer;
 using DataAccessLayer;
 using DataAccessLayer.DatabaseContext;
 using DataAccessLayer.Initializer;
@@ -8,7 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDataAccessLayer(builder.Configuration);
-
+builder.Services.AddBLLLayer();
+builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -42,6 +44,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.MapControllerRoute(
     name: "default",
