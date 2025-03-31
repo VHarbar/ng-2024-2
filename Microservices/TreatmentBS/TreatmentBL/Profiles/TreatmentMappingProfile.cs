@@ -8,6 +8,8 @@ public class TreatmentMappingProfile : Profile
     public TreatmentMappingProfile()
     {
         CreateMap<HealthCare, TreatmentDto>()
-            .ForMember(dest => dest.IsExpired, opt => opt.MapFrom(src => src.ExpirationDate <= DateTime.Now));
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.TreatmentName))
+            .ForMember(dest => dest.IsExpired, opt => opt.MapFrom(src => src.ExpirationDate <= DateTime.Now))
+            .ReverseMap();
     }
 }

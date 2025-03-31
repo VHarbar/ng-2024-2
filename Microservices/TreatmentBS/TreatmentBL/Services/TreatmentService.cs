@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DAL_Core.Entities;
 using TreatmentBL.Models;
 using TreatmentBL.Services.Interfaces;
 using TreatmentDal.Repositories.Interfaces;
@@ -46,5 +47,14 @@ public class TreatmentService : ITreatmentService
         var healthCare = await _healthCareRepository.GetAllAsync();
 
         return _mapper.Map<List<TreatmentDto>>(healthCare);
+    }
+
+    public async Task<Guid> AddNewTreatment(TreatmentDto treatment)
+    {
+        var healthCare = _mapper.Map<HealthCare>(treatment);
+
+        await _healthCareRepository.CreateAsync(healthCare);
+
+        return healthCare.Id;
     }
 }

@@ -3,7 +3,7 @@ public class TreatmentDto
 {
     public string Name { get; set; }
 
-    public bool IsExpired { get; }
+    public bool IsExpired { get; set; }
 
     public DateTime InjectedAt { get; set; }
 

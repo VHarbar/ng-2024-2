@@ -8,4 +8,6 @@ public interface ITreatmentService
     Task<TreatmentDto> GetTreatment(Guid id);
 
     Task<List<TreatmentDto>> GetAllTreatments();
+
+    Task<Guid> AddNewTreatment(TreatmentDto treatment);
 }
